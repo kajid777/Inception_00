@@ -9,14 +9,9 @@ RUN apt-get update && apt-get -y install \
 	php-mysql \
 	php-fpm \
 	php-pdo \
-	php-gd php-cli \
+	php-cli \
 	php-mbstring \
 	&& rm -rf /var/lib/apt/lists/*
-
-# I need to install wp_cli command and put it in the right directory /usr/local/bin
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-  && chmod +x wp-cli.phar \
-  && mv wp-cli.phar /usr/local/bin/wp
 
 # Copy the .conf in the html directory (PHP 7.4 on bullseye)
 COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
